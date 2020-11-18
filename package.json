@@ -1,0 +1,31 @@
+{
+  "name": "eleventy-podcast",
+  "version": "1.0.0",
+  "description": "Podcast hosting starter kit for Eleventy",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run dev",
+    "dev": "run-s clean eleventy:dev --print-label",
+    "build": "run-s clean eleventy:prod --print-label",
+    "eleventy:dev": "cross-env ELEVENTY_ENV=development eleventy --serve",
+    "eleventy:prod": "cross-env ELEVENTY_ENV=production eleventy",
+    "clean": "del-cli dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/nerdhaus/eleventy-podcast"
+  },
+  "author": "Jeff Eaton, James Walker",
+  "license": "MIT",
+  "dependencies": {
+    "@11ty/eleventy": "^0.11.0",
+    "@11ty/eleventy-navigation": "^0.1.6",
+    "@11ty/eleventy-plugin-rss": "^1.0.9",
+    "del-cli": "^3.0.1",
+    "luxon": "^1.24.1",
+    "markdown-it": "^11.0.0",
+    "netlify-cms-proxy-server": "^1.3.6",
+    "npm-run-all": "^4.1.5"
+  }
+}
