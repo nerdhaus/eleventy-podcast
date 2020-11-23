@@ -1,0 +1,4 @@
+{
+  "template" : "episode",
+  "permalink" : "episodes/S{{ season }}E{{ episode }}/"
+}

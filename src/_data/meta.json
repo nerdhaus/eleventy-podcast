@@ -1,0 +1,16 @@
+{
+  "title" : "Eleventy Podcast",
+  "description": "An Eleventy starter kit for podcasting",
+  "url": "https://eleventy-podcast.netlify.app",
+  "lang": "en",
+  "locale": "en_us",
+  "social": {
+    "web": "http://nerdhaus.net",
+    "twitter": "http://twitter.com/nerdhauslabs",
+    "github": "https://github.com/nerdhaus",
+    "facebook": "",
+    "instagram": "",
+    "linkedin": ""
+  },
+  "google_analytics": ""
+}

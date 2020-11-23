@@ -1,0 +1,28 @@
+{
+  "title": "It Goes to Eleven",
+  "subtitle": "The Eleventy Podcast",
+  "link": "https://eleventy-podcast.netlify.app",
+  "summary": "A sentence or two pitch that explains your podcast's content.",
+  "description": "A longer description of the podcast; it can include some formatting.",
+  "type": "Episodic",
+  "categories": [],
+  "author": "James Walker and Jeff Eaton",
+  "owner": { "name": "Nerdhaus Labs", "email": "team@nerdhaus.net" },
+  "copyright": "Nerdhaus 2020",
+  "cover": "/assets/cover-art.jpg",
+  "explicit": false,
+  "complete": false,
+  "block": false,
+  "feed" : "/episodes.xml",
+  "new_feed_url": "",
+  "storage": "",
+  "subscribe": {
+    "apple": "https://example.com",
+    "google": "https://example.com",
+    "tunein": "",
+    "stitcher": "https://example.com",
+    "spotify": "https://example.com",
+    "pandora": "",
+    "iheartradio": ""
+  }
+}

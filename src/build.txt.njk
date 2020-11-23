@@ -1,0 +1,10 @@
+---
+permalink: build.txt
+eleventyExcludeFromCollections: true
+---
+LAST BUILD: {{ build.timestamp }} 
+ENV:        {{ build.env }}
+{% if build.netlify -%}
+CONTEXT:    {{ build.context }}
+COMMIT:     {{ build.commit }}
+{%- endif %}

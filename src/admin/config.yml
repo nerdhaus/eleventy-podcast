@@ -1,0 +1,144 @@
+backend:
+  name: github
+  branch: main
+  repo: nerdhaus/eleventy-podcast
+
+site_url: "/"
+logo_url: "/assets/admin-login.svg"
+
+media_folder: 'src/uploads/' # Media files will be stored in the repo under src/uploads
+public_folder: '/uploads' # The src attribute for uploaded media will begin with /uploads
+
+# Run "npm cms" for local backend
+# Run "npm start-with-cms" for eleventy + backend CMS
+local_backend: true
+
+collections:
+
+
+  - name: "episodes"
+    label: "Episodes"
+    label_singular: "Episode"
+    summary: "S{{season}}E{{episode}} — {{title}}"
+    format: "frontmatter"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    folder: "src/episodes"
+    create: true
+    sortable_fields: ["title", "date", "author"]
+    view_groups:
+      - label: "Season"
+        field: "season"
+        pattern: \d{4}
+      - label: "Year"
+        field: "date"
+        pattern: \d{4}
+    fields:
+      - { label: "Title", name: "title", widget: "string", required: true, pattern: ['.{0,60}', "60 characters max"], hint: "60 characters only; used in meta tags."  }
+      - { label: "Description", name: "description", widget: "string", required: false, pattern: ['.{0,160}', "160 characters max"], hint: "Optional 160-char text used in listings and meta tags." }
+      - { label: "GUID", name: "guid", widget: "string", required: false, pattern: ['^[{]?[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}[}]?$', "Must be a valid GUID."], hint: "A unique ID to identify the episode. See https://www.guidgenerator.com."  }
+      - { label: "Date published", name: "date", widget: "date", format: "YYYY-MM-DD", required: false }
+      - { label: "Season", name: "season", widget: "number", value_type: "int", min: 1, required: false }
+      - { label: "Episode", name: "episode", widget: "number", value_type: "int", min: 1, required: false }
+      - { label: "Cover art", name: "image", widget: "image", required: false }
+      - { label: "Transcript", name: "transcript", widget: "file", required: false }
+        # Using another file hosting service (Amazon S3, libsyn, etc)? Change the widget to 'string'
+      - { label: "Audio file", name: "enclosure", widget: "file", required: false }
+      - { label: "Audio filesize", name: "filesize", widget: "number", value_type: "int", required: false }
+      - { label: "Audio duration", name: "duration", widget: "number", value_type: "int", required: false }
+      - { label: "Episode type", name: "episodeType", widget: "select", options: ["Full", "Trailer", "Bonus"], default: "Full" }
+      - { label: "Explicit", name: "explicit", widget: "boolean", default: false, required: false }
+      - { label: "Block from distribution", name: "block", widget: "boolean", default: false, required: false }
+      - { label: "Show notes", name: "body", widget: "markdown", required: false }
+
+
+  - name: "posts"
+    label: "News Posts"
+    label_singular: "Post"
+    summary: "{{title}} — {{published}}"
+    format: "frontmatter"
+    identifier_field: "slug"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    folder: "src/chats"
+    create: true
+    sortable_fields: ["title", "date", "author"]
+    view_groups:
+      - label: "Posted"
+        field: "date"
+        pattern: \d{4}
+    fields:
+      - { label: "Title", name: "title", widget: "string", required: true, pattern: ['.{0,60}', "60 characters max"], hint: "60 character limit; used in meta tags."  }
+      - { label: "Description", name: "description", widget: "string", required: false, pattern: ['.{0,160}', "160 characters max"], hint: "Optional 160-char text used in listings and meta tags." }
+      - { label: "Date published", name: "date", widget: "date", format: "YYYY-MM-DD", required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+
+  - name: "settings"
+    label: "Settings"
+    delete: false
+    files:
+
+
+      - name: "meta"
+        label: "Site meta"
+        description: "Meta tags, social links, and other settings used when building the site."
+        file: "src/_data/meta.json"
+        fields:
+        - { label: "Site name", name: "title", widget: "string", required: true, pattern: ['.{0,60}', "60 characters max"], hint: "60 character limit; used in site meta tags."  }
+        - { label: "Description", name: "description", widget: "string", required: false, pattern: ['.{0,160}', "160 characters max"], hint: "Optional 160-char text used in site meta tags." }
+        - { label: "Site URL", name: "url", widget: "string", required: true, hint: "Live URL for the site." }
+        - { label: "Language", name: "language", widget: "string", default: "en", required: true, hint: "Two-letter language code for the site's default language." }
+        - { label: "Google Analytics code", name: "google_analytics", widget: "string", required: false }
+        - name: "social"
+          label: "Social media accounts"
+          widget: "object"
+          required: false
+          fields:
+            - { label: "Web", name: "apple", widget: "string", required: false }
+            - { label: "Twitter", name: "google", widget: "string", required: false }
+            - { label: "Facebook", name: "spotify", widget: "string", required: false }
+            - { label: "Instagram", name: "pandora", widget: "string", required: false }
+            - { label: "GitHub", name: "stitcher", widget: "string", required: false }
+            - { label: "LinkedIn", name: "tunein", widget: "string", required: false }
+
+
+      - name: "podcast"
+        label: "Podcast data"
+        description: "Settings and metadata for the Podcast itself; controls what appears in apps and syndication services."
+        file: "src/_data/podcast.json"
+        fields:
+        - { label: "Title", name: "title", widget: "string", required: true, pattern: ['.{0,255}', "255 characters max"], hint: "255 character limit; used in players."  }
+        - { label: "Subtitle", name: "subtitle", widget: "string", required: true, pattern: ['.{0,60}', "60 characters max"], hint: "60 characters only; used in meta tags."  }
+        - { label: "Site link", name: "link", widget: "string", required: false, hint: "Official home page for the podcast; defaults to this site's URL." }
+        - { label: "Feed permalink", name: "feed", widget: "string", default: "/episodes.xml", required: true, hint: "Controls the permalink of the site's RSS feed of episodes." }
+        - { label: "New feed URL", name: "new_feed_url", widget: "string", required: false, hint: "Redirects existing subscribers to a new feed if you change hosts." }
+        - { label: "Custom storage URL", name: "storage", widget: "string", required: false, hint: "Custom URL for episode audio files; only necessary if using Amazon S3, etc." }
+        - { label: "Summary", name: "summary", widget: "string", required: false, pattern: ['.{0,160}', "160 characters max"], hint: "Optional short description used in some podcast players." }
+        - { label: "Description", name: "description", widget: "markdown", required: false, hint: "Extended description of the show — up to 4000 characters, with limited formatting."  }
+        - { label: "Show type", name: "type", widget: "select", options: ["Episodic", "Serial"], default: "Episodic", required: true }
+        - { label: "Categories", name: "categories", widget: "relation", required: true, collection: "categories", value_field: "{{label}}", search_fields: ["label", "parent"], display_fields: ["{{parent}} > {{label}}"] }
+        - { label: "Author", name: "author", widget: "string", required: false, hint: "Hosts or creators of the podcast." }
+        - name: "owner"
+          label: "Owner"
+          widget: "object"
+          required: true
+          hint: "Administrative contact for the podcast."
+          fields:
+            - { label: "Name", name: "name", widget: "string" }
+            - { label: "Email", name: "email", widget: "string" }
+        - { label: "Copyright", name: "copyright", widget: "string", required: false, hint: "Copyright statement; do not add the copyright symbol itself." }
+        - { label: "Cover art", name: "cover", widget: "image", required: false }
+        - { label: "Explicit", name: "explicit", widget: "boolean", default: false, required: false }
+        - { label: "Complete", name: "complete", widget: "boolean", default: false, required: false, hint: "Use to indicate that no further episodes are planned." }
+        - { label: "Block", name: "block", widget: "boolean", default: false, required: false, hint: "Use to hide from public directories before launch." }
+        - name: "subscribe"
+          label: "Subscribe Links"
+          widget: "object"
+          required: false
+          fields:
+            - { label: "Apple Podcasts", name: "apple", widget: "string", required: false, hint: "See https://help.apple.com/itc/podcasts_connect/#/itc4f0f5ac7d" }
+            - { label: "Google Podcasts", name: "google", widget: "string", required: false, hint: "See https://support.google.com/podcast-publishers/answer/9476656?hl=en" }
+            - { label: "Stitcher", name: "stitcher", widget: "string", required: false, hint: "See https://partners.stitcher.com/join" }
+            - { label: "Spotify", name: "spotify", widget: "string", required: false, hint: "See https://podcasters.spotify.com" }
+            - { label: "Pandora", name: "pandora", widget: "string", required: false, hint: "See https://www.ampplaybook.com/podcasts?utm_source=buzzsprout-blog" }
+            - { label: "TuneIn", name: "tunein", widget: "string", required: false, hint: "See https://help.tunein.com/contact/add-podcast-S19TR3Sdf" }
+            - { label: "iHeartRadio", name: "iheartradio", widget: "string", required: false, hint: "See https://www.iheart.com/content/submit-your-podcast/" }
