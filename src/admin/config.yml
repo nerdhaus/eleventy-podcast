@@ -111,7 +111,6 @@ collections:
         - { label: "Site link", name: "link", widget: "string", required: false, hint: "Official home page for the podcast; defaults to this site's URL." }
         - { label: "Feed permalink", name: "feed", widget: "string", default: "/episodes.xml", required: true, hint: "Controls the permalink of the site's RSS feed of episodes." }
         - { label: "New feed URL", name: "new_feed_url", widget: "string", required: false, hint: "Redirects existing subscribers to a new feed if you change hosts." }
-        - { label: "Custom storage URL", name: "storage", widget: "string", required: false, hint: "Custom URL for episode audio files; only necessary if using Amazon S3, etc." }
         - { label: "Summary", name: "summary", widget: "string", required: false, pattern: ['.{0,160}', "160 characters max"], hint: "Optional short description used in some podcast players." }
         - { label: "Description", name: "description", widget: "markdown", required: false, hint: "Extended description of the show — up to 4000 characters, with limited formatting."  }
         - { label: "Show type", name: "type", widget: "select", options: ["Episodic", "Serial"], default: "Episodic", required: true }

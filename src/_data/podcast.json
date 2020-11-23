@@ -15,7 +15,6 @@
   "block": false,
   "feed" : "/episodes.xml",
   "new_feed_url": "",
-  "storage": "",
   "subscribe": {
     "apple": "https://example.com",
     "google": "https://example.com",
