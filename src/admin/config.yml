@@ -35,7 +35,7 @@ collections:
     fields:
       - { label: "Title", name: "title", widget: "string", required: true, pattern: ['.{0,60}', "60 characters max"], hint: "60 characters only; used in meta tags."  }
       - { label: "Description", name: "description", widget: "string", required: false, pattern: ['.{0,160}', "160 characters max"], hint: "Optional 160-char text used in listings and meta tags." }
-      - { label: "GUID", name: "guid", widget: "string", required: false, pattern: ['^[{]?[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}[}]?$', "Must be a valid GUID."], hint: "A unique ID to identify the episode. See https://www.guidgenerator.com."  }
+      - { label: "GUID", name: "guid", widget: "uuid", required: true, hint: "A unique ID to identify the episode. See https://www.guidgenerator.com."  }
       - { label: "Date published", name: "date", widget: "date", format: "YYYY-MM-DD", required: false }
       - { label: "Season", name: "season", widget: "number", value_type: "int", min: 1, required: false }
       - { label: "Episode", name: "episode", widget: "number", value_type: "int", min: 1, required: false }
@@ -43,8 +43,8 @@ collections:
       - { label: "Transcript", name: "transcript", widget: "file", required: false }
         # Using another file hosting service (Amazon S3, libsyn, etc)? Change the widget to 'string'
       - { label: "Audio file", name: "enclosure", widget: "file", required: false }
-      - { label: "Audio filesize", name: "filesize", widget: "number", value_type: "int", required: false }
-      - { label: "Audio duration", name: "duration", widget: "number", value_type: "int", required: false }
+      - { label: "Audio filesize", name: "filesize", widget: "hidden", value_type: "int", required: false, hint: "Reserved for future use." }
+      - { label: "Audio duration", name: "duration", widget: "hidden", value_type: "int", required: false, hint: hint: "Reserved for future use." }
       - { label: "Episode type", name: "episodeType", widget: "select", options: ["Full", "Trailer", "Bonus"], default: "Full" }
       - { label: "Explicit", name: "explicit", widget: "boolean", default: false, required: false }
       - { label: "Block from distribution", name: "block", widget: "boolean", default: false, required: false }
@@ -93,12 +93,12 @@ collections:
           widget: "object"
           required: false
           fields:
-            - { label: "Web", name: "apple", widget: "string", required: false }
-            - { label: "Twitter", name: "google", widget: "string", required: false }
-            - { label: "Facebook", name: "spotify", widget: "string", required: false }
-            - { label: "Instagram", name: "pandora", widget: "string", required: false }
-            - { label: "GitHub", name: "stitcher", widget: "string", required: false }
-            - { label: "LinkedIn", name: "tunein", widget: "string", required: false }
+            - { label: "Twitter", name: "twitter", widget: "string", required: false }
+            - { label: "Facebook", name: "facebook", widget: "string", required: false }
+            - { label: "Instagram", name: "instagram", widget: "string", required: false }
+            - { label: "Reddit", name: "reddit", widget: "string", required: false }
+            - { label: "GitHub", name: "github", widget: "string", required: false }
+            - { label: "LinkedIn", name: "linkedin", widget: "string", required: false }
 
 
       - name: "podcast"
@@ -111,6 +111,7 @@ collections:
         - { label: "Site link", name: "link", widget: "string", required: false, hint: "Official home page for the podcast; defaults to this site's URL." }
         - { label: "Feed permalink", name: "feed", widget: "string", default: "/episodes.xml", required: true, hint: "Controls the permalink of the site's RSS feed of episodes." }
         - { label: "New feed URL", name: "new_feed_url", widget: "string", required: false, hint: "Redirects existing subscribers to a new feed if you change hosts." }
+        - { label: "Custom storage URL", name: "storage", widget: "hidden", required: false, hint: "Reserved for future use." }
         - { label: "Summary", name: "summary", widget: "string", required: false, pattern: ['.{0,160}', "160 characters max"], hint: "Optional short description used in some podcast players." }
         - { label: "Description", name: "description", widget: "markdown", required: false, hint: "Extended description of the show — up to 4000 characters, with limited formatting."  }
         - { label: "Show type", name: "type", widget: "select", options: ["Episodic", "Serial"], default: "Episodic", required: true }
@@ -139,5 +140,5 @@ collections:
             - { label: "Stitcher", name: "stitcher", widget: "string", required: false, hint: "See https://partners.stitcher.com/join" }
             - { label: "Spotify", name: "spotify", widget: "string", required: false, hint: "See https://podcasters.spotify.com" }
             - { label: "Pandora", name: "pandora", widget: "string", required: false, hint: "See https://www.ampplaybook.com/podcasts?utm_source=buzzsprout-blog" }
-            - { label: "TuneIn", name: "tunein", widget: "string", required: false, hint: "See https://help.tunein.com/contact/add-podcast-S19TR3Sdf" }
             - { label: "iHeartRadio", name: "iheartradio", widget: "string", required: false, hint: "See https://www.iheart.com/content/submit-your-podcast/" }
+            - { label: "TuneIn", name: "tunein", widget: "string", required: false, hint: "See https://help.tunein.com/contact/add-podcast-S19TR3Sdf" }

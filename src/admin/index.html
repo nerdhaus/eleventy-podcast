@@ -9,7 +9,19 @@
         <!-- Include the script that builds the page and powers Netlify CMS -->
         <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
 
+        <!-- Include external scripts that add additional Netlify CMS Widgets -->
+        <script src="https://unpkg.com/netlify-cms-widget-uuid-v4"></script>
+        <script src="https://unpkg.com/netlify-cms-widget-nested-select@^1.0.0"></script>
+        <script src="https://unpkg.com/netlify-cms-widget-async-select@^1.0.0"></script>
+
         <!-- Netlify Identity Widget -->
         <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+        
+        <!-- Set up additional widgets -->
+        <script>
+          CMS.registerWidget('uuid', uuidWidget.UuidControl, uuidWidget.UuidPreview);
+          CMS.registerWidget('nested-select', window.NestedSelectControl, window.NestedSelectPreview)
+          CMS.registerWidget('async-select', AsyncSelectWidget.asyncSelectControl, AsyncSelectWidget.asyncSelectPreview)
+        </script> 
     </body>
 </html>

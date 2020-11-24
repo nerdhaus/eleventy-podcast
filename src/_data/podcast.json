@@ -15,13 +15,14 @@
   "block": false,
   "feed" : "/episodes.xml",
   "new_feed_url": "",
+  "storage": "",
   "subscribe": {
     "apple": "https://example.com",
     "google": "https://example.com",
-    "tunein": "",
     "stitcher": "https://example.com",
     "spotify": "https://example.com",
     "pandora": "",
-    "iheartradio": ""
+    "iheartradio": "",
+    "tunein": ""
   }
 }
