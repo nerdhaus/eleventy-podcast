@@ -24,7 +24,7 @@
   "complete": false,
   "type": "Episodic",
   "link": "https://eleventy-podcast.netlify.app",
-  "storage": "",
+  "storage": "src/uploads/",
   "categories": [],
   "description": "A longer description of the podcast; it can include some formatting.",
   "feed": "/episodes.xml"

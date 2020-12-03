@@ -20,7 +20,6 @@ module.exports = function (eleventyConfig) {
 				eleventyConfig.addFilter(filterName, filters[filterName])
 		})
 	
-
 		// Asset Watch Targets
 		eleventyConfig.addWatchTarget('./src/assets')
 
@@ -40,7 +39,7 @@ module.exports = function (eleventyConfig) {
 		eleventyConfig.addLayoutAlias('base',			'base.njk')
 		eleventyConfig.addLayoutAlias('simple',		'simple.njk')
 		eleventyConfig.addLayoutAlias('update',		'simple.njk')
-		eleventyConfig.addLayoutAlias('episode',	'simple.njk')
+		eleventyConfig.addLayoutAlias('episode',	'episode.njk')
 
 		// Pass-through files
 		eleventyConfig.addPassthroughCopy('src/admin')

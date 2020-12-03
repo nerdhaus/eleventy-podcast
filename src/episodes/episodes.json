@@ -1,4 +1,4 @@
 {
-  "template" : "episode",
+  "layout" : "episode",
   "permalink" : "episodes/S{{ season }}E{{ episode }}/"
 }
